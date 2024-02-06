@@ -1,0 +1,26 @@
+Done with Michael, aka mr. nebuchadnezzar
+Design by Team kyri; draft1/design.txt in kyra’s repo
+
+Things I like:
+Practical vulnerability list, we’ve talked about most of the stuff in class
+Vulnerabilities have concerns and examples attacks related to imaginary scenario
+
+Concerns and/or suggestions:
+It’s unclear how to implement a cookie attack (what kind of attack that gets you admin perms?)
+The 3rd attack is confusing, why do we want to only upload bad files if we are not admin
+Lacks clear instruction on how to chain the cookies, sql injection attacks together
+The imaginary scenario is a bit unclear (what are the databases stored in the bakery server, who has what access permissions?)
+
+Design by Team Manic Meese: draft1/design.md in Cole’s repo
+
+Things I like:
+Comprehensive list of vulnerabilities
+The top ten list linked looks like a great resource
+Use of DDOS for a course-relevant purpose
+“As a user you are fine with this because you know Gaggle is a good hearted company and would never sell your data” has me DYING
+
+Concerns and/or suggestions:
+How would one share images with friends if they were only accessible by admin?
+Gaggle would be immediately beset by internet pranksters labeling photos of ducks as pianos :)
+Unclear why specifically the servers are vulnerable to ARP spoofing/what the conditions are such that makes them vulnerable?
+Might have trouble making sure the DDOS crashes the server and then automatically reboots rather than just overwhelming it?

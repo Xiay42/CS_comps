@@ -1,0 +1,43 @@
+Make a list of vulnerability types you might be interested in including. Make this list as long as you can, and annotate it with links as appropriate.
+Phishing attacks
+Physical attacks
+Session hijacking
+Cross-site scripting
+Man-in-the-middle attacks
+File system manipulation
+Directory enumeration / traversal
+File upload
+SQL injection
+Hashcat
+John the ripper 
+Bad server/http requests
+
+
+
+Pick several of these vulnerabilities that you could install into your VM so that an attacker could chain them together to go from "nmap from the outside" to "shell with whoami==root". Write this chain of vulnerabilities as a concise, step-by-step description of actions the attacker should take to get a root shell.
+Heartbleed - openssl
+https://arstechnica.com/information-technology/2014/04/how-i-used-heartbleed-to-steal-a-sites-private-crypto-key/
+What we need: a connection to a vulnerable server
+What we get: 
+the private key, which we can use to talk to other trusted servers
+The session cookie, which we can use to do session hijacking
+Session hijacking
+What we need: the session cookie
+What we get: Privileged Actions of the session we hijacked
+Terminal as non-privileged user
+Privilege Escalation
+What we need: non-privileged user’s access to the application
+What to do: SQL injection
+What we get: encrypted login info
+Brute force password cracking
+What we need: password vault
+What to do: brute force try most common passwords
+What we get: root access password
+
+Write a brief description of the fictional person/people/organization your machine will be owned by. This will help you refine your design later to make its vulnerabilities realistic in context.
+Springfield’s town hall hasn’t updated their website since heartbleed was discovered (St. Croix County, Wisconsin)
+They’ve had a listing for an internet security position up for 5 years but nobody has applied (they’re offering $7.25/hr)
+Town council member Barnaby is accessing property tax records from his summer home in Death Valley, California, and his session can be hijacked
+File upload as Barnaby a malicious file to the tax database which is a php script which enables reverse shell
+SQL injection can be used to get the town’s (poorly) encrypted login info
+Password for the town webmaster can be extracted by brute force (hashcat/john the ripper) and is the same as root

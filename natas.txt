@@ -1,0 +1,19 @@
+level0:
+password: g9D9cREhslqBKtcA2uocGHPfMZVzeFK6
+do: 
+- view page source
+
+level1:
+password: h4ubbcXrWqsTo7GGnnUMLppXbOogfBZ7
+do:
+- crtl + u to see page source without right clicking
+
+level2:
+password: G6ctbMJ5Nb4cbFwhpMPSvxGHhQ7I6W8Q
+do:
+- view page source
+- look at the png
+- the path is http://natas2.natas.labs.overthewire.org/files/image.png
+- look at the other files in /files folder (users.txt)
+
+level3:

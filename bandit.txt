@@ -1,0 +1,178 @@
+-1. password bandit0. ssh bandit0@bandit.labs.overthewire.org -p 2220
+
+0. I forgot to record the password but I did this by doing ls first and cat the readme file
+
+1. forgot password. I typed in the full address of the file "./-" after the cat
+
+2. forgot password. I wrapped the filenem in paranthesis like "spaces in this filename" after the cat
+
+3. password:
+./inhere is a directory
+cd into ./inhere
+find command
+cat ./.hidden
+
+4. password:lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
+cd into inhere
+find command
+cat ./-file01 gives me 7L3  Y ͯ        Ŵ    E Y ܚ       V&  h F 
+cat ./file01 gives me   y   O̫  ` \ -⃐ Hx  2  K
+...
+in the end I found that file7 is correct.
+nvm, after some searching on the web...
+I can do file ./* that show me the file type for all the files.
+
+5. password:P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
+- cd into inhere
+- file */* give you all files, but not hidden files
+- file */{.,}* includes files that starts with . and , (hidden files)
+- pipe (|) the results to grep
+- grep is used to for searching and matching patterns
+- grep "ASCII text" shows you all files containing "ASCII text" in their names
+- -v inverse the filter, so grep -v "with very long lines" excludes file names that has these words
+- the password is in folder 15, file2: Q2z7VXYuHnMJ11Ks9drvakV3s0pADkcPDQl1TlRMMdSzzHJQzX
+- ok, not this
+- du checks disk usage, with options like -b (show in bytes) and -a (all files)
+- du -b -a | grep 1033 gives you 1 file, folder7file2:P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
+- or you can use find command
+- find -type f (only look at the files, f stands for files) -size 1033 (show files with size 1033) ! -excutable (to exclude excutables)
+
+6. password:z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
+- i don't know why file */{.,}* doesn't work here
+- find / -type f -user bandit7 -group bandit6 -size 3 (/ means we start searching from the root directory)
+- lots of error messages
+- direct the error messages to /dev/null
+- there's two streams used for input and output 1: output of command or program 2: standard error output
+- so we need to do 2>/dev/null
+- find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null
+
+7. password:TESKZC0XvTetK0S9xNwm25STk5iWrBvP
+- cat data.txt | grep millionth
+
+8. password:EN632PlfYiZbn3PhVK3XOGSlNInNE00t
+- sort -u sorts and remove adjacent identical lines
+- uniq -u is specifically used to remove duplicate lines from sorted input
+- sort data.txt | uniq -u
+
+9. password: G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
+- strings command searches for printable strings
+- strings -12 searches for strings that's at least 12 chars long
+- do strings data.txt
+
+10. do: cat data.txt | base64 --decode
+password:6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
+- base64 --decode decodes the string
+- do: cat data.txt | base64 --decode
+
+11. do: cat data.txt | tr "A-Za-z" "N-ZA-Mn-za-m"
+password: JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
+- tr (transform) takes and looks up each char in the input using the first set and replace it with the char in the second set at the same position
+
+12. very hard
++password: wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw
++do: 
+- mkdir /tmp/michael
+- cd /tmp/michael
+- cp ~/data.txt .
+- mv data.txt hexdata
+- xxd -r hexdata > binary
+- file binary
+- if it's gzip-ed: 
+	- mv binary binary.gz
+	- gzip -d (or gunzip) binary.gz
+- if it's bzip2-ed:
+	- bzip2 -d (or bunzip2) binary
+- if it's tar-ed:
+	- tar -x -f binary
+- then check file type again
+- repeat
++notes:
+- mkdir makes a new directory
+- cp copies the file from destination1 to destination2
+- ~/ means starting from the home directory
+- . at the end means copy to the current directory.
+- use mv to rename the file
+- -x option in tar means extract
+- -f option in tar means operating on a file
+- you only need to change suffix for gzip-ed files
+
+13. confused about bandit14
+password: fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
+do:
+- ssh -i sshkey.private bandit14@localhost -p 2220
+- cat /etc/bandit_pass/bandit14
+notes:
+- -i option allows you to use keys to ssh
+- @localhost means we are logging into the machine that runs the level13 environment as bandit14
+
+14. 
+password: jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt
+do: 
+- netcat localhost 30000
+- fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
+notes:
+- netcat(nc) can read and write to to a network connection
+- write format: nc host_name port_name
+
+15.
+password: JQttfApK4SeyHwDlI9SXGR50qclOAil1
+do:
+- openssl s_client -connect localhost:30001
+- enter password
+or
+- ncat --ssl localhost 30001
+- enter password
+notes:
+- openssl is another tool to connect to networks (but with ssl)
+
+16:
+password:VwOSWtCA7lRKkTfbr2IDh6awj9RNZM5e
+do:
+- nmap -sV  -p 31000-32000 localhost (i just did nmap  -p 31000-32000 localhost and tried it one by one)
+- enter password
+- mkdir /tmp/michael
+- cd /tmp/michael
+- touch sshkey.private
+- paste the private key in the file (using vim)
+- chmod 400 sshkey.private (change to readonly)
+- ssh -i sshkey.private bandit17@localhost -p 2220
+- cat /etc/bandit_pass/bandit17
+notes:
+- you have to paste the entire thing, which is ridiculous
+
+17.
+password: hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
+do:
+- diff passwords.new passwords.old
+notes:
+- format: 
+	- first line: line number in the first file, special symbol, line  number in the second file
+	- following <: lines from the first file
+	- ---: seperates two files
+	- following >: lines from the second file
+
+18.
+password:awhqfNnAbc1naukrpqDYcF95h7HoMTrC
+do:
+- cat /etc/shells
+- ssh bandit18@bandit.labs.overthewire.org -p 2220 -t "/bin/sh"
+- cat readme
+notes:
+- you can logging in with different shells using SSH
+- -t option lets you choose which shell you want to use
+
+19. don't understand id
+password:VxCazJaVykI6W36BkBU0mJTCM8rR95XT
+do:
+- ./bandit20-do
+- ./bandit20-do id
+- ./bandit20-do cat /etc/bandit_pass/bandit20
+notes:
+- 
+
+20:
+
+
+
+
+
