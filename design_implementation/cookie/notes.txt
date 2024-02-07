@@ -1,0 +1,5 @@
+in chrome
+- inspect -> application -> cookies
+- add or edit cookie
+- type = username, name = user
+
