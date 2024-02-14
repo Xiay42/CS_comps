@@ -1,0 +1,4 @@
+- go to login.php
+- login in with user/password
+- upload terminal.html, terminal.php in files folder
+- get reverse shell
